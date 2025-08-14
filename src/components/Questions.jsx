@@ -14,7 +14,7 @@ export default function Questions() {
   async function getTriviaData() {
     setLoading(true);
     const resp = await axios.get(
-      "https://opentdb.com/api.php?amount=7&category=21&difficulty=medium&type=multiple"
+      "https://opentdb.com/api.php?amount=7&category=21&difficulty=easy&type=multiple"
     );
 
     const questions = resp.data.results.map((q) => {
