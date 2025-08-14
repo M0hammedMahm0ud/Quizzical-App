@@ -150,7 +150,7 @@ export default function Questions() {
           ))}
           {check ? (
             <div className="new-quiz">
-              <span>{`your score is ${userPoints}`}</span>
+              <span>{`your score is ${userPoints} / ${userAnswers.length}`}</span>
               <button onClick={getNewQuiz}>New Quiz</button>
             </div>
           ) : (
