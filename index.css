@@ -186,6 +186,13 @@ option:hover {
 .cat-section {
   gap: 1rem;
 }
+.alert-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
 /* Mobile Support */
 @media (max-width: 600px) {
   .answers-span,
