@@ -1,13 +1,33 @@
 import { useState } from "react";
 import Questions from "./Questions";
+import { categories } from "../Data/categories";
+import { difficulty } from "../Data/categories";
 
 export default function IntroPage() {
   const [startQuiz, setStartQuiz] = useState(false);
-
+  const [questionsApiData, setQuestionsApiData] = useState({
+    diff: "easy",
+    cat: "Sports",
+    num: 10,
+  });
+  function Categories() {
+    return categories.map((item, index) => (
+      <option key={index} value={item.category}>
+        {item.category}
+      </option>
+    ));
+  }
+  function difficulty_() {
+    return difficulty.map((item, index) => (
+      <option key={index} value={item}>
+        {item.toUpperCase()}
+      </option>
+    ));
+  }
   return (
     <>
       {startQuiz ? (
-        <Questions />
+        <Questions apiDataInfo={questionsApiData} />
       ) : (
         <div className="introDiv jcontent">
           <h1>Quizzical</h1>
@@ -15,29 +35,33 @@ export default function IntroPage() {
             Simply cheif your short quiz with your fav Category, Difficulty and
             Number of Questions .{" "}
           </p>
-          <div className="cat-section">
+          <form className="cat-section">
             <div>
               <label htmlFor="category">Category : </label>
-              <select id="category">
-                <option>Sports</option>
-                <option>Comics</option>
-                <option>Film</option>
-                <option>Art</option>
-                <option>General</option>
-                <option>Books</option>
-                <option>Computers</option>
-                <option>History</option>
-                <option>Anime & Manga</option>
-                <option>Cartoon & Animations</option>
-                <option>Geography</option>
+              <select
+                id="category"
+                onChange={(e) => {
+                  setQuestionsApiData((prev) => ({
+                    ...prev,
+                    cat: e.target.value,
+                  }));
+                }}
+              >
+                {Categories()}
               </select>
             </div>{" "}
             <div>
               <label htmlFor="difficulty">Select Difficulty : </label>
-              <select id="difficulty">
-                <option>Easy</option>
-                <option>Medium</option>
-                <option>Hard</option>
+              <select
+                id="difficulty"
+                onChange={(e) => {
+                  setQuestionsApiData((prev) => ({
+                    ...prev,
+                    diff: e.target.value,
+                  }));
+                }}
+              >
+                {difficulty_()}
               </select>
             </div>
             <div>
@@ -48,9 +72,15 @@ export default function IntroPage() {
                 max={50}
                 placeholder="(1 - 50)"
                 min={1}
+                onChange={(e) => {
+                  setQuestionsApiData((prev) => ({
+                    ...prev,
+                    num: e.target.value,
+                  }));
+                }}
               />
             </div>
-          </div>
+          </form>
           <button onClick={() => setStartQuiz(() => true)}>Start Quiz</button>
         </div>
       )}

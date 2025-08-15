@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import IntroPage from "./IntroPage";
-
-export default function Questions() {
+import { categories } from "../Data/categories";
+export default function Questions(props) {
   const [triviaQuestion, setTriviaQuestion] = useState([]);
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,10 +13,17 @@ export default function Questions() {
   const [allCorrectAnswers, setAllCorrectAnswers] = useState([]);
   const [matchAnswers, setMatchAnswers] = useState([]);
   const [userPoints, setUserPoints] = useState(0);
+  console.log(props.apiDataInfo);
   async function getTriviaData() {
     setLoading(true);
+    let catNum = 0;
+    for (let i of categories) {
+      if (i.category === props.apiDataInfo.cat) {
+        catNum = i.apiId;
+      }
+    }
     const resp = await axios.get(
-      "https://opentdb.com/api.php?amount=7&category=11&difficulty=easy&type=multiple"
+      `https://opentdb.com/api.php?amount=${props.apiDataInfo.num}&category=${catNum}&difficulty=${props.apiDataInfo.diff}&type=multiple`
     );
 
     const questions = resp.data.results.map((q) => {
@@ -52,7 +59,7 @@ export default function Questions() {
       const filtered = prev.filter((item) => item.question !== ansObj.question);
       return [...filtered, ansObj];
     });
-    if (userAnswers.length === 6) {
+    if (userAnswers.length === props.apiDataInfo.num - 1) {
       setDisable(true);
     }
   }
@@ -99,7 +106,10 @@ export default function Questions() {
               <h4>Questions Category: {category}</h4>
               {triviaQuestion.map((triviaData, index) => (
                 <div key={index} className="quest-card">
-                  <p>{removeCharacters(triviaData.question)}</p>
+                  <p>
+                    {index + 1} {" - "}
+                    {removeCharacters(triviaData.question)}
+                  </p>
                   <div className="answers-span-parent">
                     {triviaData.allAnswers.map((choice, i) => {
                       let className = "answers-span";
