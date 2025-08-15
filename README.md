@@ -9,7 +9,7 @@ A responsive, interactive trivia quiz built with React that fetches questions fr
 Check out the live version here:  
 👉 [Quizzical App Live](https://quizzical-app-sc.netlify.app/)
 
-👌 [Figma Design](https://www.figma.com/design/hZ2cic7sZbXUIG9tzOL2DR/Quizzical-App?node-id=0-1&t=pGXC7OhGvax0xWN1-1)
+👌 [Figma Design](https://www.figma.com/proto/hZ2cic7sZbXUIG9tzOL2DR/Quizzical-App?node-id=8-2&p=f&t=mckMGCb2LHPZsYEX-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
 
 ---
 
