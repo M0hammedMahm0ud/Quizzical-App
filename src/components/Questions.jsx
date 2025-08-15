@@ -103,7 +103,7 @@ export default function Questions(props) {
             </div>
           ) : (
             <div className="questionDiv">
-              <h4>Questions Category: {category}</h4>
+              <h4>Questions Category: {removeCharacters(category)}</h4>
               {triviaQuestion.map((triviaData, index) => (
                 <div key={index} className="quest-card">
                   <p>
