@@ -103,18 +103,15 @@ export default function Questions() {
                   <div className="answers-span-parent">
                     {triviaData.allAnswers.map((choice, i) => {
                       let className = "answers-span";
-
                       const isSelected = userAnswers.some(
                         (userAns) =>
                           userAns.question === triviaData.question &&
                           userAns.answer === choice
                       );
-
                       if (check) {
                         const matchedEl = matchAnswers.find(
                           (matched) => matched.question === triviaData.question
                         );
-
                         if (matchedEl) {
                           if (choice === matchedEl.correctAnswer) {
                             className = "correct"; // Correct answer
