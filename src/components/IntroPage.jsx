@@ -82,6 +82,13 @@ export default function IntroPage() {
             </div>
           </form>
           <button onClick={() => setStartQuiz(() => true)}>Start Quiz</button>
+          <p className="alert">
+            Note : if you hit Start Quiz directly, The quiz will start with
+            (defult values)
+          </p>
+          <p>Category : sport </p>
+          <p>Difficulty : EASY</p>
+          <p>Number Of Questions : 10</p>
         </div>
       )}
     </>
