@@ -21,6 +21,8 @@ body {
 }
 
 /* Shared Container Styles */
+/* Intro Section */
+
 .introDiv,
 .questionDiv,
 .load {
@@ -42,7 +44,6 @@ body {
   overflow-y: auto;
 }
 
-/* Intro Section */
 .introDiv > p,
 .introDiv > button {
   font-weight: 600;
@@ -81,11 +82,34 @@ body {
 }
 
 .quest-card > p,
-.new-quiz > span {
+.new-quiz > span,
+.cat-section {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  font-size: 1.1rem;
+  font-weight: 400;
+  border-radius: 4px;
+  border: none;
+  padding: 5px;
+
+  /* arrow */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" stroke="%23333" stroke-width="2" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+}
+option:hover {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
 /* Answer Buttons */
 .answers-span-parent {
   display: flex;
@@ -146,10 +170,14 @@ body {
   background-color: #fff;
   cursor: auto;
 }
-.jcontent {
+.jcontent,
+.cat-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.cat-section {
+  gap: 1rem;
 }
 /* Mobile Support */
 @media (max-width: 600px) {
