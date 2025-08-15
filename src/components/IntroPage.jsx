@@ -13,7 +13,7 @@ export default function IntroPage() {
           <h1>Quizzical</h1>
           <p>
             Simply cheif your short quiz with your fav Category, Difficulty and
-            Number of Questions{" "}
+            Number of Questions .{" "}
           </p>
           <div className="cat-section">
             <div>
