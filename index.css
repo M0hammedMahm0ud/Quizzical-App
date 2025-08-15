@@ -50,6 +50,10 @@ body {
   font-size: 1.1rem;
   padding: 1rem;
 }
+.introDiv > p {
+  max-width: 500px;
+  text-align: center;
+}
 
 .introDiv > button,
 .questionDiv > button,
@@ -88,7 +92,8 @@ body {
   font-weight: bold;
 }
 
-select {
+select,
+input {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -98,7 +103,9 @@ select {
   border-radius: 4px;
   border: none;
   padding: 5px;
-
+  width: 200px;
+}
+select {
   /* arrow */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" stroke="%23333" stroke-width="2" fill="none"/></svg>');
   background-repeat: no-repeat;
