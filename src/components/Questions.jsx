@@ -4,9 +4,9 @@ import IntroPage from "./IntroPage";
 import { categories } from "../Data/categories";
 export default function Questions(props) {
   const [triviaQuestion, setTriviaQuestion] = useState([]);
+  const [matchAnswers, setMatchAnswers] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [allCorrectAnswers, setAllCorrectAnswers] = useState([]);
-  const [matchAnswers, setMatchAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [check, setCheck] = useState(false);
   const [disable, setDisable] = useState(false);
