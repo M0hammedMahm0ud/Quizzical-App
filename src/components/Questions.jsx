@@ -157,7 +157,7 @@ export default function Questions(props) {
               ))}
               {check ? (
                 <div className="new-quiz">
-                  <span>{`your score is ${userPoints} / ${userAnswers.length}`}</span>
+                  <span>{`your score is ${userPoints} / ${props.apiDataInfo.num}`}</span>
                   <button onClick={getNewQuiz}>New Quiz</button>
                 </div>
               ) : (
