@@ -12,7 +12,6 @@ export default function Questions(props) {
   const [allCorrectAnswers, setAllCorrectAnswers] = useState([]);
   const [matchAnswers, setMatchAnswers] = useState([]);
   const [userPoints, setUserPoints] = useState(0);
-  console.log(props.apiDataInfo);
   async function getTriviaData() {
     setLoading(true);
     let catNum = 0;
