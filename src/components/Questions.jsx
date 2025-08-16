@@ -4,26 +4,28 @@ import IntroPage from "./IntroPage";
 import { categories } from "../Data/categories";
 export default function Questions(props) {
   const [triviaQuestion, setTriviaQuestion] = useState([]);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [allCorrectAnswers, setAllCorrectAnswers] = useState([]);
+  const [matchAnswers, setMatchAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [check, setCheck] = useState(false);
   const [disable, setDisable] = useState(false);
   const [newGame, setNewGame] = useState(false);
-  const [userAnswers, setUserAnswers] = useState([]);
-  const [allCorrectAnswers, setAllCorrectAnswers] = useState([]);
-  const [matchAnswers, setMatchAnswers] = useState([]);
   const [userPoints, setUserPoints] = useState(0);
   async function getTriviaData() {
     setLoading(true);
+    // match category to its api id
     let catNum = 0;
     for (let i of categories) {
       if (i.category === props.apiDataInfo.cat) {
         catNum = i.apiId;
       }
     }
+    // axios api call
     const resp = await axios.get(
       `https://opentdb.com/api.php?amount=${props.apiDataInfo.num}&category=${catNum}&difficulty=${props.apiDataInfo.diff}&type=multiple`
     );
-
+    // prepare questions object with random array of all answers
     const questions = resp.data.results.map((q) => {
       const answers = [...q.incorrect_answers, q.correct_answer].sort(
         () => Math.random() - 0.5
@@ -31,13 +33,16 @@ export default function Questions(props) {
       return { ...q, allAnswers: answers };
     });
 
+    // set returned questions object
     setTriviaQuestion(questions);
+    // needed array of objects to determine the question and correct answer to this question
     setAllCorrectAnswers(
       questions.map((q) => ({
         question: q.question,
         correctAnswer: q.correct_answer,
       }))
     );
+    // return loading state to false
     setLoading(false);
   }
 
@@ -45,12 +50,14 @@ export default function Questions(props) {
     getTriviaData();
   }, []);
 
-  function removeCharacters(question) {
+  // html entities decoding
+  function htmlDecoding(question) {
     const textarea = document.createElement("textarea");
     textarea.innerHTML = question;
     return textarea.value;
   }
 
+  // here we need to store user answer for check which is correct or incorrect
   function addUserAnswers(ansObj) {
     setUserAnswers((prev) => {
       const filtered = prev.filter((item) => item.question !== ansObj.question);
@@ -61,13 +68,19 @@ export default function Questions(props) {
     }
   }
 
+  // here is the most funny and logical part (at least for me)
+  /* 
+    this function handle the user points and which answer is correct or not
+    also returned GREAT matchAnswer array of objects which i used to add correct class or wrong matched with the question, user answer, correct answer
+  */
+
   function handleAnswers() {
     let points = 0;
     const matches = [];
 
     allCorrectAnswers.forEach((correct) => {
       const userAnswer = userAnswers.find(
-        (ua) => ua.question === correct.question
+        (userA) => userA.question === correct.question
       );
       if (userAnswer) {
         const isCorrect = userAnswer.answer === correct.correctAnswer;
@@ -85,6 +98,8 @@ export default function Questions(props) {
     setMatchAnswers(matches);
     setCheck(true);
   }
+
+  // boolean state to start new game
   function getNewQuiz() {
     setNewGame(true);
   }
@@ -105,7 +120,7 @@ export default function Questions(props) {
                 <div key={index} className="quest-card">
                   <p>
                     {index + 1} {" - "}
-                    {removeCharacters(triviaData.question)}
+                    {htmlDecoding(triviaData.question)}
                   </p>
                   <div className="answers-span-parent">
                     {triviaData.allAnswers.map((choice, i) => {
@@ -147,7 +162,7 @@ export default function Questions(props) {
                           }
                           className={className}
                         >
-                          {removeCharacters(choice)}
+                          {htmlDecoding(choice)}
                         </span>
                       );
                     })}
