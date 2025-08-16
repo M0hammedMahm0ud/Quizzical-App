@@ -6,7 +6,7 @@ import { difficulty } from "../Data/categories";
 export default function IntroPage() {
   // boolean state to start quiz and render question component
   const [startQuiz, setStartQuiz] = useState(false);
-  // passed api specifications (category, difficulty, and number of questions)
+  // passed api specifications (category, difficulty, and number of questions) to question component
   const [questionsApiData, setQuestionsApiData] = useState({
     diff: "easy",
     cat: "Sports",
