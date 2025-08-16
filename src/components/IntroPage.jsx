@@ -35,8 +35,8 @@ export default function IntroPage() {
             Simply cheif your short quiz with your fav Category, Difficulty and
             Number of Questions .{" "}
           </p>
-          <form className="cat-section">
-            <div>
+          <div className="cat-section">
+            <div className="individual-cat-div">
               <label htmlFor="category">Category : </label>
               <select
                 id="category"
@@ -50,7 +50,7 @@ export default function IntroPage() {
                 {Categories()}
               </select>
             </div>{" "}
-            <div>
+            <div className="individual-cat-div">
               <label htmlFor="difficulty">Select Difficulty : </label>
               <select
                 id="difficulty"
@@ -64,7 +64,7 @@ export default function IntroPage() {
                 {difficulty_()}
               </select>
             </div>
-            <div>
+            <div className="individual-cat-div">
               <label htmlFor="numberOfQuestions">Number of Questions : </label>
               <input
                 id="numberOfQuestions"
@@ -80,7 +80,7 @@ export default function IntroPage() {
                 }}
               />
             </div>
-          </form>
+          </div>
 
           <button onClick={() => setStartQuiz(() => true)}>Start Quiz</button>
         </div>

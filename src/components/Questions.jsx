@@ -4,7 +4,6 @@ import IntroPage from "./IntroPage";
 import { categories } from "../Data/categories";
 export default function Questions(props) {
   const [triviaQuestion, setTriviaQuestion] = useState([]);
-  const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [check, setCheck] = useState(false);
   const [disable, setDisable] = useState(false);
@@ -40,7 +39,6 @@ export default function Questions(props) {
         correctAnswer: q.correct_answer,
       }))
     );
-    setCategory(resp.data.results[0].category);
     setLoading(false);
   }
 
@@ -103,7 +101,7 @@ export default function Questions(props) {
             </div>
           ) : (
             <div className="questionDiv">
-              <h4>Questions Category: {removeCharacters(category)}</h4>
+              <h4>Questions Category: {props.apiDataInfo.cat}</h4>
               {triviaQuestion.map((triviaData, index) => (
                 <div key={index} className="quest-card">
                   <p>
