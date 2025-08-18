@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import IntroPage from "./IntroPage";
-import { categories } from "../Data/categories";
 export default function Questions(props) {
   const [triviaQuestion, setTriviaQuestion] = useState([]);
   const [matchAnswers, setMatchAnswers] = useState([]);
@@ -16,7 +15,7 @@ export default function Questions(props) {
     setLoading(true);
     // match category to its api id
     let catNum = 0;
-    for (let i of categories) {
+    for (let i of props.categories) {
       if (i.category === props.apiDataInfo.cat) {
         catNum = i.apiId;
       }
@@ -115,7 +114,10 @@ export default function Questions(props) {
             </div>
           ) : (
             <div className="questionDiv">
-              <h4>Questions Category: {props.apiDataInfo.cat}</h4>
+              <h4>
+                {props.apiDataInfo.cat}, {props.apiDataInfo.diff.toUpperCase()},{" "}
+                {props.apiDataInfo.num} Questions
+              </h4>
               {triviaQuestion.map((triviaData, index) => (
                 <div key={index} className="quest-card">
                   <p>

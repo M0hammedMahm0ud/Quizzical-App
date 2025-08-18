@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Questions from "./Questions";
-import { categories } from "../Data/categories";
-import { difficulty } from "../Data/categories";
+import Categories from "./Categories";
 
 export default function IntroPage() {
   // boolean state to start quiz and render question component
@@ -9,30 +8,60 @@ export default function IntroPage() {
   // passed api specifications (category, difficulty, and number of questions) to question component
   const [questionsApiData, setQuestionsApiData] = useState({
     diff: "easy",
-    cat: "Sports",
+    catId: "Sports",
     num: 10,
   });
-
-  // render categories
-  function Categories() {
-    return categories.map((item, index) => (
-      <option key={index} value={item.category}>
-        {item.category}
-      </option>
-    ));
-  }
-  // render difficulty level
-  function difficulty_() {
-    return difficulty.map((item, index) => (
-      <option key={index} value={item}>
-        {item.toUpperCase()}
-      </option>
-    ));
-  }
+  const categories = [
+    {
+      category: "Sports",
+      apiId: 21,
+    },
+    {
+      category: "Comics",
+      apiId: 29,
+    },
+    {
+      category: "Film",
+      apiId: 11,
+    },
+    {
+      category: "Art",
+      apiId: 25,
+    },
+    {
+      category: "General",
+      apiId: 9,
+    },
+    {
+      category: "Books",
+      apiId: 10,
+    },
+    {
+      category: "Computers",
+      apiId: 18,
+    },
+    {
+      category: "History",
+      apiId: 23,
+    },
+    {
+      category: "Anime & Manga",
+      apiId: 31,
+    },
+    {
+      category: "Cartoon & Animations",
+      apiId: 32,
+    },
+    {
+      category: "Geography",
+      apiId: 22,
+    },
+  ];
+  const difficulty = ["easy", "medium", "hard"];
   return (
     <>
       {startQuiz ? (
-        <Questions apiDataInfo={questionsApiData} />
+        <Questions apiDataInfo={questionsApiData} categories={categories} />
       ) : (
         <div className="introDiv jcontent">
           <h1>Quizzical</h1>
@@ -52,7 +81,7 @@ export default function IntroPage() {
                   }));
                 }}
               >
-                {Categories()}
+                {<Categories categories={categories} />}
               </select>
             </div>{" "}
             <div className="individual-cat-div">
@@ -66,7 +95,11 @@ export default function IntroPage() {
                   }));
                 }}
               >
-                {difficulty_()}
+                {difficulty.map((item, index) => (
+                  <option key={index} value={item}>
+                    {item.toUpperCase()}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="individual-cat-div">
