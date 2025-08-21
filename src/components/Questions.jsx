@@ -16,7 +16,7 @@ export default function Questions(props) {
     // match category to its api id
     let catNum = 0;
     for (let i of props.categories) {
-      if (i.category === props.apiDataInfo.cat) {
+      if (i.category === props.apiDataInfo.catId) {
         catNum = i.apiId;
       }
     }
@@ -102,6 +102,7 @@ export default function Questions(props) {
   function getNewQuiz() {
     setNewGame(true);
   }
+
   return (
     <>
       {newGame ? (
@@ -115,8 +116,9 @@ export default function Questions(props) {
           ) : (
             <div className="questionDiv">
               <h4>
-                {props.apiDataInfo.cat}, {props.apiDataInfo.diff.toUpperCase()},{" "}
-                {props.apiDataInfo.num} Questions
+                {props.apiDataInfo.catId},{" "}
+                {props.apiDataInfo.diff.toUpperCase()}, {props.apiDataInfo.num}{" "}
+                Questions
               </h4>
               {triviaQuestion.map((triviaData, index) => (
                 <div key={index} className="quest-card">

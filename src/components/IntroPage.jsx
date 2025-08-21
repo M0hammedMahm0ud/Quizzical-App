@@ -77,7 +77,7 @@ export default function IntroPage() {
                 onChange={(e) => {
                   setQuestionsApiData((prev) => ({
                     ...prev,
-                    cat: e.target.value,
+                    catId: e.target.value,
                   }));
                 }}
               >
