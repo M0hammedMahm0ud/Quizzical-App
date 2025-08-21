@@ -122,9 +122,10 @@ export default function IntroPage() {
 
           <button onClick={() => setStartQuiz(() => true)}>Start Quiz</button>
           <footer>
-            By{" "}
-            <a href="">
-              Mohammed Mahmoud Ali<i class="fa-brands fa-github"></i>
+            Developed By{" "}
+            <a href="https://github.com/M0hammedMahm0ud" target="_blank">
+              Mohammed Mahmoud Ali{"  "}
+              <i class="fa-brands fa-github"></i>
             </a>
           </footer>
         </div>

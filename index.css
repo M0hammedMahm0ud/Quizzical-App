@@ -201,7 +201,16 @@ option:hover {
   flex-direction: column;
   gap: 10px;
 }
-/* Mobile Support */
+footer {
+  margin-top: 3rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
+}
+footer a {
+  color: #293264;
+}
+/* Responsive */
 @media (max-width: 600px) {
   .answers-span,
   .correct,
