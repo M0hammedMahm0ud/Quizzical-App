@@ -34,19 +34,6 @@ Check out the live version here:
 
 ---
 
-## 📂 Project Structure
-
-```
-src/
-├── components/
-│   └── Questions.jsx     # Main quiz logic and UI
-├── assets/
-│   └── intro-page.png    # Background image
-├── App.jsx               # Root component
-├── index.jsx             # Entry point
-└── styles.css            # Global styles
-```
-
 ## 🎯 How It Works
 
 1. On load, the app fetches **7 sports trivia questions** (medium difficulty) from the OpenTDB API.
