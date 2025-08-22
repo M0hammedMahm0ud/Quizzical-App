@@ -119,7 +119,6 @@ export default function IntroPage() {
               />
             </div>
           </div>
-
           <button onClick={() => setStartQuiz(() => true)}>Start Quiz</button>
           <footer>
             Developed By{" "}
