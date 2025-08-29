@@ -44,18 +44,6 @@ Check out the live version here:
    - Calculates the score
    - Highlights correct answers in green, wrong in red
    - Displays score and **New Quiz** button
-
----
-
-## 🐞 Troubleshooting
-
-- **Answers not highlighting or score incorrect**
-
-  - Make sure all questions have a selected answer before pressing **Check answers**
-
-- **HTML entities like `&amp;` showing**
-  - Use the `removeCharacters` function with a `<textarea>` decoding trick
-
 ---
 
 Happy quizzing! 🎉
