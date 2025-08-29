@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import IntroPage from "./IntroPage";
+import { categories } from "../Contexts/categoryContext";
 export default function Questions(props) {
   const [triviaQuestion, setTriviaQuestion] = useState([]);
   const [matchAnswers, setMatchAnswers] = useState([]);
@@ -11,11 +12,12 @@ export default function Questions(props) {
   const [disable, setDisable] = useState(false);
   const [newGame, setNewGame] = useState(false);
   const [userPoints, setUserPoints] = useState(0);
+  const Cats = useContext(categories);
   async function getTriviaData() {
     setLoading(true);
     // match category to its api id
     let catNum = 0;
-    for (let i of props.categories) {
+    for (let i of Cats) {
       if (i.category === props.apiDataInfo.catId) {
         catNum = i.apiId;
       }
