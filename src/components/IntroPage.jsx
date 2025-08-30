@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Questions from "./Questions";
 import Categories from "./Categories";
+import { Link } from "react-router-dom";
 
 export default function IntroPage() {
   // boolean state to start quiz and render question component
@@ -79,7 +80,7 @@ export default function IntroPage() {
             Developed By{" "}
             <a href="https://github.com/M0hammedMahm0ud" target="_blank">
               Mohammed Mahmoud Ali{"  "}
-              <i class="fa-brands fa-github"></i>
+              <i className="fa-brands fa-github"></i>
             </a>
           </footer>
         </div>

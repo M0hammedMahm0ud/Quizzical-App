@@ -1,5 +1,7 @@
 import IntroPage from "./components/IntroPage";
+import Questions from "./components/Questions";
 import { categories } from "./Contexts/categoryContext";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const categoriesD = [
@@ -50,9 +52,16 @@ function App() {
   ];
   return (
     <>
-      <categories.Provider value={categoriesD}>
-        <IntroPage />
-      </categories.Provider>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <categories.Provider value={categoriesD}>
+              <IntroPage />
+            </categories.Provider>
+          }
+        ></Route>
+      </Routes>
     </>
   );
 }

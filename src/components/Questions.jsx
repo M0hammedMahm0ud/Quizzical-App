@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import IntroPage from "./IntroPage";
 import { categories } from "../Contexts/categoryContext";
+import { Link } from "react-router-dom";
 export default function Questions(props) {
   //states
   const [triviaQuestion, setTriviaQuestion] = useState([]);
@@ -16,6 +17,8 @@ export default function Questions(props) {
 
   // categories context
   const Cats = useContext(categories);
+  // const x = useParams();
+  // console.log(x);
   async function getTriviaData() {
     setLoading(true);
     // match category to its api id
