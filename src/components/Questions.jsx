@@ -3,6 +3,7 @@ import axios from "axios";
 import IntroPage from "./IntroPage";
 import { categories } from "../Contexts/categoryContext";
 export default function Questions(props) {
+  //states
   const [triviaQuestion, setTriviaQuestion] = useState([]);
   const [matchAnswers, setMatchAnswers] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
@@ -12,6 +13,8 @@ export default function Questions(props) {
   const [disable, setDisable] = useState(false);
   const [newGame, setNewGame] = useState(false);
   const [userPoints, setUserPoints] = useState(0);
+
+  // categories context
   const Cats = useContext(categories);
   async function getTriviaData() {
     setLoading(true);
