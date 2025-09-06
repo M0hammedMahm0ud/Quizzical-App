@@ -8,19 +8,17 @@ export default function Questions() {
   const [matchAnswers, setMatchAnswers] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [allCorrectAnswers, setAllCorrectAnswers] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [check, setCheck] = useState(false);
   const [disable, setDisable] = useState(false);
   const [userPoints, setUserPoints] = useState(0);
 
+  // react router params Hook
   const params = useParams();
-  console.log(params);
+
   // categories context
   const Cats = useContext(categories);
-  // const x = useParams();
-  // console.log(x);
+
   async function getTriviaData() {
-    setLoading(true);
     // match category to its api id
     let catNum = 0;
     for (let i of Cats) {
@@ -49,8 +47,6 @@ export default function Questions() {
         correctAnswer: q.correct_answer,
       }))
     );
-    // return loading state to false
-    setLoading(false);
   }
 
   useEffect(() => {
@@ -105,10 +101,9 @@ export default function Questions() {
     setMatchAnswers(matches);
     setCheck(true);
   }
-
   return (
     <>
-      {loading ? (
+      {triviaQuestion.length === 0 ? (
         <div className="load">
           <h3>Loading...</h3>
         </div>
