@@ -44,8 +44,7 @@ body {
   overflow-y: auto;
 }
 
-.introDiv > p,
-.introDiv > button {
+.introDiv > p {
   font-weight: 600;
   font-size: 1.1rem;
   padding: 1rem;
@@ -55,9 +54,11 @@ body {
   text-align: center;
 }
 
-.introDiv > button,
-.questionDiv > button,
-.new-quiz > button {
+.btn,
+.questionDiv > button {
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 1rem;
   background-color: #4d5b9e;
   color: #f5f7fb;
   border: none;
@@ -68,12 +69,10 @@ body {
   font-weight: 600;
   transition: background 0.3s ease;
 }
-
-.introDiv > button:hover,
+.btn:hover,
 .questionDiv > button:hover {
   background-color: #3c4a85;
 }
-
 /* Question Container */
 .quest-card {
   width: 100%;

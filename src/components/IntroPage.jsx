@@ -71,7 +71,7 @@ export default function IntroPage() {
         <Link
           to={`/questions/${questionsApiData.diff}/${questionsApiData.catId}/${questionsApiData.num}`}
         >
-          <button>Start Quiz</button>
+          <button className="btn">Start Quiz</button>
         </Link>
         <footer>
           Developed By{" "}

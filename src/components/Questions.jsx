@@ -114,9 +114,14 @@ export default function Questions() {
         </div>
       ) : (
         <div className="questionDiv">
-          <h4>
-            {params.cat}, {params.diff.toUpperCase()}, {params.num} Questions
-          </h4>
+          <div className="returnDiv">
+            <Link to={"/"}>
+              <i className="fa-solid fa-circle-left"></i> {"   "}
+            </Link>
+            <h4>
+              {params.cat}, {params.diff.toUpperCase()}, {params.num} Questions
+            </h4>
+          </div>
           {triviaQuestion.map((triviaData, index) => (
             <div key={index} className="quest-card">
               <p>
@@ -175,14 +180,14 @@ export default function Questions() {
               <span>{`your score is ${userPoints} / ${params.num}`}</span>
               <Link to="/">
                 {" "}
-                <button>New Quiz</button>
+                <button className="btn">New Quiz</button>
               </Link>
             </div>
           ) : (
             <button
               onClick={handleAnswers}
               disabled={disable ? false : true}
-              className={disable ? "" : "disabled-btn"}
+              className={disable ? "btn" : "disabled-btn"}
             >
               Check answers
             </button>
