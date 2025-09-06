@@ -42,6 +42,5 @@ Check out the live version here:
    - Calculates the score
    - Highlights correct answers in green, wrong in red
    - Displays score and **New Quiz** button
----
 
 Happy quizzing! 🎉
