@@ -16,11 +16,8 @@ Check out the live version here:
 ## ✨ Features
 
 - **Dynamic quiz data** fetched from the Open Trivia Database (OpenTDB) API
-- **Multiple-choice questions** with randomized answer order
+- **React Router** Navigation Between pages with Dynamic Routing
 - **Automatic HTML entity decoding** for clean question and answer text
-- **Selection tracking**: Highlights chosen answers before submission
-- **Result feedback**: Correct answers in green, wrong in red
-- **Score tracking** with replay option
 - **Responsive design** for mobile and desktop
 
 ---
@@ -31,6 +28,7 @@ Check out the live version here:
 - [Axios](https://axios-http.com/) for API requests
 - HTML `<textarea>` decoding trick for HTML entities
 - CSS Flexbox + media queries for layout
+- Netlify for deployment
 
 ---
 
