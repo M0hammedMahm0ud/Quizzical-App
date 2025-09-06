@@ -115,8 +115,11 @@ export default function Questions() {
       ) : (
         <div className="questionDiv">
           <div className="returnDiv">
-            <Link to={"/"}>
-              <i className="fa-solid fa-circle-left"></i> {"   "}
+            <Link to="/">
+              <p>
+                <i className="fa-solid fa-circle-left"></i> {"   "}
+                Go Back
+              </p>
             </Link>
             <h4>
               {params.cat}, {params.diff.toUpperCase()}, {params.num} Questions
