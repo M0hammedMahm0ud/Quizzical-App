@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import IntroPage from "./IntroPage";
 import { categories } from "../Contexts/categoryContext";
-import { Link } from "react-router-dom";
-export default function Questions(props) {
+import { Link, useParams } from "react-router-dom";
+export default function Questions() {
   //states
   const [triviaQuestion, setTriviaQuestion] = useState([]);
   const [matchAnswers, setMatchAnswers] = useState([]);
@@ -12,9 +11,10 @@ export default function Questions(props) {
   const [loading, setLoading] = useState(false);
   const [check, setCheck] = useState(false);
   const [disable, setDisable] = useState(false);
-  const [newGame, setNewGame] = useState(false);
   const [userPoints, setUserPoints] = useState(0);
 
+  const params = useParams();
+  console.log(params);
   // categories context
   const Cats = useContext(categories);
   // const x = useParams();
@@ -24,13 +24,13 @@ export default function Questions(props) {
     // match category to its api id
     let catNum = 0;
     for (let i of Cats) {
-      if (i.category === props.apiDataInfo.catId) {
+      if (i.category === params.cat) {
         catNum = i.apiId;
       }
     }
     // axios api call
     const resp = await axios.get(
-      `https://opentdb.com/api.php?amount=${props.apiDataInfo.num}&category=${catNum}&difficulty=${props.apiDataInfo.diff}&type=multiple`
+      `https://opentdb.com/api.php?amount=${params.num}&category=${catNum}&difficulty=${params.diff}&type=multiple`
     );
     // prepare questions object with random array of all answers
     const questions = resp.data.results.map((q) => {
@@ -70,7 +70,7 @@ export default function Questions(props) {
       const filtered = prev.filter((item) => item.question !== ansObj.question);
       return [...filtered, ansObj];
     });
-    if (userAnswers.length === props.apiDataInfo.num - 1) {
+    if (userAnswers.length === params.num - 1) {
       setDisable(true);
     }
   }
@@ -106,98 +106,88 @@ export default function Questions(props) {
     setCheck(true);
   }
 
-  // boolean state to start new game
-  function getNewQuiz() {
-    setNewGame(true);
-  }
-
   return (
     <>
-      {newGame ? (
-        <IntroPage />
+      {loading ? (
+        <div className="load">
+          <h3>Loading...</h3>
+        </div>
       ) : (
-        <>
-          {loading ? (
-            <div className="load">
-              <h3>Loading...</h3>
+        <div className="questionDiv">
+          <h4>
+            {params.cat}, {params.diff.toUpperCase()}, {params.num} Questions
+          </h4>
+          {triviaQuestion.map((triviaData, index) => (
+            <div key={index} className="quest-card">
+              <p>
+                {index + 1} {" - "}
+                {htmlDecoding(triviaData.question)}
+              </p>
+              <div className="answers-span-parent">
+                {triviaData.allAnswers.map((choice, i) => {
+                  let className = "answers-span";
+                  const isSelected = userAnswers.some(
+                    (userAns) =>
+                      userAns.question === triviaData.question &&
+                      userAns.answer === choice
+                  );
+                  if (check) {
+                    const matchedEl = matchAnswers.find(
+                      (matched) => matched.question === triviaData.question
+                    );
+                    if (matchedEl) {
+                      if (choice === matchedEl.correctAnswer) {
+                        className = "correct"; // Correct answer
+                      } else if (
+                        choice === matchedEl.userAns &&
+                        !matchedEl.isUserCorrect
+                      ) {
+                        className = "wrong-answer"; // Wrong selection
+                      } else {
+                        className = "selected-answer without";
+                      }
+                    }
+                  } else if (isSelected) {
+                    className = "selected-answer";
+                  }
+
+                  return (
+                    <span
+                      key={i}
+                      onClick={() =>
+                        !check &&
+                        addUserAnswers({
+                          question: triviaData.question,
+                          answer: choice,
+                        })
+                      }
+                      className={className}
+                    >
+                      {htmlDecoding(choice)}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+          {check ? (
+            <div className="new-quiz">
+              <span>{`your score is ${userPoints} / ${params.num}`}</span>
+              <Link to="/">
+                {" "}
+                <button>New Quiz</button>
+              </Link>
             </div>
           ) : (
-            <div className="questionDiv">
-              <h4>
-                {props.apiDataInfo.catId},{" "}
-                {props.apiDataInfo.diff.toUpperCase()}, {props.apiDataInfo.num}{" "}
-                Questions
-              </h4>
-              {triviaQuestion.map((triviaData, index) => (
-                <div key={index} className="quest-card">
-                  <p>
-                    {index + 1} {" - "}
-                    {htmlDecoding(triviaData.question)}
-                  </p>
-                  <div className="answers-span-parent">
-                    {triviaData.allAnswers.map((choice, i) => {
-                      let className = "answers-span";
-                      const isSelected = userAnswers.some(
-                        (userAns) =>
-                          userAns.question === triviaData.question &&
-                          userAns.answer === choice
-                      );
-                      if (check) {
-                        const matchedEl = matchAnswers.find(
-                          (matched) => matched.question === triviaData.question
-                        );
-                        if (matchedEl) {
-                          if (choice === matchedEl.correctAnswer) {
-                            className = "correct"; // Correct answer
-                          } else if (
-                            choice === matchedEl.userAns &&
-                            !matchedEl.isUserCorrect
-                          ) {
-                            className = "wrong-answer"; // Wrong selection
-                          } else {
-                            className = "selected-answer without";
-                          }
-                        }
-                      } else if (isSelected) {
-                        className = "selected-answer";
-                      }
-
-                      return (
-                        <span
-                          key={i}
-                          onClick={() =>
-                            !check &&
-                            addUserAnswers({
-                              question: triviaData.question,
-                              answer: choice,
-                            })
-                          }
-                          className={className}
-                        >
-                          {htmlDecoding(choice)}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
-              {check ? (
-                <div className="new-quiz">
-                  <span>{`your score is ${userPoints} / ${props.apiDataInfo.num}`}</span>
-                  <button onClick={getNewQuiz}>New Quiz</button>
-                </div>
-              ) : (
-                <button
-                  onClick={handleAnswers}
-                  disabled={disable ? false : true}
-                  className={disable ? "" : "disabled-btn"}
-                >
-                  Check answers
-                </button>
-              )}
-            </div>
+            <button
+              onClick={handleAnswers}
+              disabled={disable ? false : true}
+              className={disable ? "" : "disabled-btn"}
+            >
+              Check answers
+            </button>
           )}
-        </>
+        </div>
       )}
     </>
   );

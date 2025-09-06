@@ -52,16 +52,12 @@ function App() {
   ];
   return (
     <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <categories.Provider value={categoriesD}>
-              <IntroPage />
-            </categories.Provider>
-          }
-        ></Route>
-      </Routes>
+      <categories.Provider value={categoriesD}>
+        <Routes>
+          <Route path="/" element={<IntroPage />}></Route>
+          <Route path="/Questions/:diff/:cat/:num" element={<Questions />} />
+        </Routes>
+      </categories.Provider>
     </>
   );
 }
