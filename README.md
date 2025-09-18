@@ -34,7 +34,7 @@ Check out the live version here:
 
 ## 🎯 How It Works
 
-1. On load, the app fetches **7 sports trivia questions** (medium difficulty) from the OpenTDB API.
+1. On load, the app fetches questions from the OpenTDB API.
 2. It stores each question with shuffled answers (correct + incorrect mixed).
 3. The user selects one answer per question.
 4. Once all are answered, the **Check answers** button activates.
