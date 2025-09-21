@@ -2,8 +2,7 @@ import IntroPage from "./components/IntroPage";
 import Questions from "./components/Questions";
 import { categories } from "./Contexts/categoryContext";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { ManiLayout } from "../pages/ManiLayout";
-
+import { ManiLayout } from "./pages/MainLayout";
 function App() {
   const categoriesD = [
     { category: "Sports", apiId: 21 },
