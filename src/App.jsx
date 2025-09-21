@@ -2,7 +2,7 @@ import IntroPage from "./components/IntroPage";
 import Questions from "./components/Questions";
 import { categories } from "./Contexts/categoryContext";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { ManiLayout } from "./pages/MainLayout";
+import { MainLayout } from "./pages/MainLayout";
 function App() {
   const categoriesD = [
     { category: "Sports", apiId: 21 },
@@ -21,7 +21,7 @@ function App() {
   return (
     <categories.Provider value={categoriesD}>
       <Routes>
-        <Route path="/" element={<ManiLayout />}>
+        <Route path="/" element={<MainLayout />}>
           <Route index element={<IntroPage />} />
           <Route path="questions/:diff/:cat/:num" element={<Questions />} />
         </Route>
