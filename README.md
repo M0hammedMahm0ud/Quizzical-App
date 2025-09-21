@@ -15,10 +15,10 @@ Check out the live version here:
 
 ## ✨ Features
 
-- **Dynamic quiz data** fetched from the Open Trivia Database (OpenTDB) API
-- **React Router** Navigation Between pages with Dynamic Routing
-- **Automatic HTML entity decoding** for clean question and answer text
-- **Responsive design** for mobile and desktop
+- **Dynamic quiz data** fetched from the Open Trivia Database (OpenTDB) API.
+- **React Router** Navigation Between pages with Dynamic Routing && Nested Routes.
+- **Automatic HTML entity decoding** for clean question and answer text.
+- **Responsive design** for mobile and desktop.
 
 ---
 
