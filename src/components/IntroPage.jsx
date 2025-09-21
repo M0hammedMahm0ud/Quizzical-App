@@ -13,7 +13,6 @@ export default function IntroPage() {
   return (
     <>
       <div className="introDiv jcontent">
-        <h1>Quizzical</h1>
         <p>
           Simply cheif your short quiz with your fav Category, Difficulty and
           Number of Questions .{" "}
@@ -73,13 +72,6 @@ export default function IntroPage() {
         >
           <button className="btn">Start Quiz</button>
         </Link>
-        <footer>
-          Developed By{" "}
-          <a href="https://github.com/M0hammedMahm0ud" target="_blank">
-            Mohammed Mahmoud Ali{"  "}
-            <i className="fa-brands fa-github"></i>
-          </a>
-        </footer>
       </div>
     </>
   );
