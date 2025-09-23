@@ -28,7 +28,9 @@ body {
 
 /* Shared Container Styles */
 /* Intro Section */
-
+.load {
+  min-height: 80vh;
+}
 .questionDiv,
 .load {
   color: #293264;
@@ -38,6 +40,7 @@ body {
   gap: 10px;
   align-items: center;
 }
+
 .introDiv {
   display: flex;
   flex-direction: column;
