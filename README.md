@@ -1,6 +1,6 @@
 # Quizzical App
 
-**The final project from Scrimba platform (React Basics Course) (solo project)**
+**The final project from Scrimba platform (React Basics Course) (solo project)** <br/>
 A responsive, interactive trivia quiz built with React that fetches questions from the Open Trivia Database API. Users can answer multiple-choice questions, check their results, and play again.
 
 Check out the live version here:  
