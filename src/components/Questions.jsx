@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import { categories } from "../Contexts/categoryContext";
 import { Link, useParams } from "react-router-dom";
@@ -11,6 +11,13 @@ export default function Questions() {
   const [check, setCheck] = useState(false);
   const [disable, setDisable] = useState(false);
   const [userPoints, setUserPoints] = useState(0);
+
+  const reviewRef = useRef(null);
+  useEffect(() => {
+    if (check) {
+      reviewRef.current?.scrollIntoView({ behavior: "smooth", top: 0 });
+    }
+  }, [check]);
 
   // react router params Hook
   const params = useParams();
@@ -28,12 +35,12 @@ export default function Questions() {
     }
     // axios api call
     const resp = await axios.get(
-      `https://opentdb.com/api.php?amount=${params.num}&category=${catNum}&difficulty=${params.diff}&type=multiple`
+      `https://opentdb.com/api.php?amount=${params.num}&category=${catNum}&difficulty=${params.diff}&type=multiple`,
     );
     // prepare questions object with random array of all answers
     const questions = resp.data.results.map((q) => {
       const answers = [...q.incorrect_answers, q.correct_answer].sort(
-        () => Math.random() - 0.5
+        () => Math.random() - 0.5,
       );
       return { ...q, allAnswers: answers };
     });
@@ -45,7 +52,7 @@ export default function Questions() {
       questions.map((q) => ({
         question: q.question,
         correctAnswer: q.correct_answer,
-      }))
+      })),
     );
   }
 
@@ -83,7 +90,7 @@ export default function Questions() {
 
     allCorrectAnswers.forEach((correct) => {
       const userAnswer = userAnswers.find(
-        (userA) => userA.question === correct.question
+        (userA) => userA.question === correct.question,
       );
       if (userAnswer) {
         const isCorrect = userAnswer.answer === correct.correctAnswer;
@@ -109,7 +116,7 @@ export default function Questions() {
         </div>
       ) : (
         <div className="questionDiv">
-          <div className="returnDiv">
+          <div className="returnDiv" ref={reviewRef}>
             <Link to="/">
               <p>
                 <i className="fa-solid fa-circle-left"></i> {"   "}
@@ -119,6 +126,11 @@ export default function Questions() {
             <h4>
               {params.cat}, {params.diff.toUpperCase()}, {params.num} Questions
             </h4>
+            {check && (
+              <p>
+                Your Score is {userPoints} / {params.num}
+              </p>
+            )}
           </div>
           {triviaQuestion.map((triviaData, index) => (
             <div key={index} className="quest-card">
@@ -132,11 +144,11 @@ export default function Questions() {
                   const isSelected = userAnswers.some(
                     (userAns) =>
                       userAns.question === triviaData.question &&
-                      userAns.answer === choice
+                      userAns.answer === choice,
                   );
                   if (check) {
                     const matchedEl = matchAnswers.find(
-                      (matched) => matched.question === triviaData.question
+                      (matched) => matched.question === triviaData.question,
                     );
                     if (matchedEl) {
                       if (choice === matchedEl.correctAnswer) {
@@ -175,7 +187,7 @@ export default function Questions() {
           ))}
           {check ? (
             <div className="new-quiz">
-              <span>{`your score is ${userPoints} / ${params.num}`}</span>
+              <span>{`Your Score is ${userPoints} / ${params.num}`}</span>
               <Link to="/">
                 {" "}
                 <button className="btn">New Quiz</button>
