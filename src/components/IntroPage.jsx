@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Categories from "./Categories";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function IntroPage() {
   // passed api specifications (category, difficulty, and number of questions) to question component
@@ -10,6 +10,13 @@ export default function IntroPage() {
     num: 10,
   });
   const difficulty = ["easy", "medium", "hard"];
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(
+      `/questions/${questionsApiData.diff}/${questionsApiData.catId}/${questionsApiData.num}`,
+    );
+  };
   return (
     <>
       <div className="introDiv jcontent">
@@ -17,9 +24,9 @@ export default function IntroPage() {
           Simply cheif your short quiz with your fav Category, Difficulty and
           Number of Questions .{" "}
         </p>
-        <div className="cat-section">
-          <div className="individual-cat-div">
-            <label htmlFor="category">Category : </label>
+        <form action="" onSubmit={handleSubmit} className="cat-section">
+          <label htmlFor="category">
+            Category :
             <select
               id="category"
               onChange={(e) => {
@@ -31,9 +38,9 @@ export default function IntroPage() {
             >
               {<Categories />}
             </select>
-          </div>{" "}
-          <div className="individual-cat-div">
-            <label htmlFor="difficulty">Select Difficulty : </label>
+          </label>
+          <label htmlFor="difficulty">
+            Select Difficulty :
             <select
               id="difficulty"
               onChange={(e) => {
@@ -49,9 +56,9 @@ export default function IntroPage() {
                 </option>
               ))}
             </select>
-          </div>
-          <div className="individual-cat-div">
-            <label htmlFor="numberOfQuestions">Number of Questions : </label>
+          </label>
+          <label htmlFor="numberOfQuestions">
+            Number of Questions :
             <input
               id="numberOfQuestions"
               type="number"
@@ -65,13 +72,11 @@ export default function IntroPage() {
                 }));
               }}
             />
-          </div>
-        </div>
-        <Link
-          to={`/questions/${questionsApiData.diff}/${questionsApiData.catId}/${questionsApiData.num}`}
-        >
-          <button className="btn">Start Quiz</button>
-        </Link>
+          </label>
+        </form>
+        <button className="btn" type="submit">
+          Start Quiz
+        </button>
       </div>
     </>
   );

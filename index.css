@@ -202,6 +202,11 @@ option:hover {
 .cat-section {
   gap: 1rem;
 }
+.cat-section input,
+.cat-section select {
+  margin-top: 0.2rem;
+  display: block;
+}
 .alert-section {
   display: flex;
   flex-direction: column;
