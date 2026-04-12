@@ -63,7 +63,7 @@ export default function IntroPage() {
               id="numberOfQuestions"
               type="number"
               max={50}
-              placeholder="(1 - 50) defult => 10"
+              placeholder="(1 - 50) Default => 10"
               min={1}
               onChange={(e) => {
                 setQuestionsApiData((prev) => ({
@@ -74,7 +74,7 @@ export default function IntroPage() {
             />
           </label>
         </form>
-        <button className="btn" type="submit">
+        <button className="btn" type="submit" onClick={handleSubmit}>
           Start Quiz
         </button>
       </div>
