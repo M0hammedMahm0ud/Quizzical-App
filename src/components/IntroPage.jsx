@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Categories from "./Categories";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function IntroPage() {
   // passed api specifications (category, difficulty, and number of questions) to question component

@@ -11,6 +11,7 @@ export default function Questions() {
   const [check, setCheck] = useState(false);
   const [disable, setDisable] = useState(false);
   const [userPoints, setUserPoints] = useState(0);
+  const [error, setError] = useState(null);
 
   const reviewRef = useRef(null);
   useEffect(() => {
@@ -34,9 +35,11 @@ export default function Questions() {
       }
     }
     // axios api call
-    const resp = await axios.get(
-      `https://opentdb.com/api.php?amount=${params.num}&category=${catNum}&difficulty=${params.diff}&type=multiple`,
-    );
+    const resp = await axios
+      .get(
+        `https://opentdb.com/api.php?amount=${params.num}&category=${catNum}&difficulty=${params.diff}&type=multiple`,
+      )
+      .catch((err) => setError(err.status));
     // prepare questions object with random array of all answers
     const questions = resp.data.results.map((q) => {
       const answers = [...q.incorrect_answers, q.correct_answer].sort(
@@ -112,7 +115,19 @@ export default function Questions() {
     <>
       {triviaQuestion.length === 0 ? (
         <div className="load">
-          <h3>Loading...</h3>
+          {error ? (
+            <>
+              <h3>Server Error please Go back and try again!!</h3>
+              <Link to="/">
+                <p>
+                  <i className="fa-solid fa-circle-left"></i> {"   "}
+                  Go Back
+                </p>
+              </Link>
+            </>
+          ) : (
+            <h3>Loading...</h3>
+          )}
         </div>
       ) : (
         <div className="questionDiv">
