@@ -1,7 +1,7 @@
 import IntroPage from "./components/IntroPage";
 import Questions from "./components/Questions";
 import { categories, categoriesD } from "./Contexts/categoryContext";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Navigate, Router, Routes } from "react-router-dom";
 import { MainLayout } from "./pages/MainLayout";
 function App() {
   return (

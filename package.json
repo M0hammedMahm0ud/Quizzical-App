@@ -1,14 +1,15 @@
 {
   "homepage": "https://M0hammedMahm0ud.github.io/Quizzical-App",
   "name": "quizzical-app",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist --nojekyll",
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/copy-404.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
